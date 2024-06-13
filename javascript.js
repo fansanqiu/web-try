@@ -6,66 +6,80 @@ function getComputerChoice(){
     randomNum = Math.random();
     
     if (randomNum >= 0 && randomNum < 0.33){
-        return "shitou";
+        return "rock";
     }
     else if (randomNum >= 0.33 && randomNum < 0.66){
-        return "bu";
+        return "paper";
     }
     else{
-        return "jiandao";
+        return "scissor";
     }
 }
 
-let computerChoice = getComputerChoice();
-
 function getHumanChoice(){
-    let humanChoice = prompt();
-    humanChoice = humanChoice.toLowerCase();
-    console.log("The human selects: " + humanChoice);
+    let humanChoice = prompt("Input","paper");
 
-    if(humanChoice == "shitou"){
-        return "shitou";
+    humanChoice = humanChoice.toLowerCase();
+
+    if(humanChoice == "rock"){
+        console.log("The human selects: " + humanChoice);
+        return "rock";
     }
-    else if(humanChoice == "bu"){
-        return "bu";
+    else if(humanChoice == "paper"){
+        console.log("The human selects: " + humanChoice);
+        return "paper";
     }
-    else if(humanChoice == "jiandao"){
-        return "jiandao";
+    else if(humanChoice == "scissor"){
+        console.log("The human selects: " + humanChoice);
+        return "scissor";
     }
     else{
-        return "bu";
+        console.log("Something error");
     }
 }
 
 function playRound(humanSelection, computerSelection){
     switch(true){
-        case humanSelection == computerSelection:
+        case humanSelection === computerSelection:
             console.log("Nobody win.");
-            return;
-        case humanSelection == "shitou" && computerSelection == "jiandao":
+            break;
+        case humanSelection === "rock" && computerSelection === "scissor":
             console.log("Human win.");
-            return humanScore += 1;
-        case humanSelection == "shitou" && computerSelection == "bu":
+            humanScore += 1;
+            break;
+        case humanSelection === "rock" && computerSelection === "paper":
             console.log("Computer win.");
-            return computerScore += 1;
-        case humanSelection == "bu" && computerSelection == "shitou":
+            computerScore += 1;
+            break;
+        case humanSelection === "paper" && computerSelection === "rock":
             console.log("Human win.");
-            return humanScore += 1;
-        case humanSelection == "bu" && computerSelection == "jiandao":
+            humanScore += 1;
+            break;
+        case humanSelection == "paper" && computerSelection === "scissor":
             console.log("Computer win.")
-            return computerScore += 1;
-        case humanSelection == "jiandao" && computerSelection == "bu":
+            computerScore += 1;
+            break;
+        case humanSelection === "scissor" && computerSelection === "paper":
             console.log("Human win.");
-            return humanScore += 1;
-        case humanSelection == "jiandao" && computerSelection == "shitou":
+            humanScore += 1;
+            break;
+        case humanSelection === "scissor" && computerSelection === "rock":
             console.log("Computer win.");
-            return computerScore += 1;
+            computerScore += 1;
+            break;
         default:
             console.log("Something error!")
     }
 }
 
 for (let i = 0; i < 5; i++){
+    
+    const computerChoice = getComputerChoice();
+    const humanChoice = getHumanChoice();
     console.log("The computer selects: " + computerChoice);
-    playRound(getHumanChoice(), getComputerChoice())
+    
+    playRound(humanChoice, computerChoice);
 }
+
+console.log("Human: " + humanScore)
+console.log("Computer: " + computerScore)
