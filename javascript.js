@@ -1,10 +1,29 @@
-//找到已有元素
 const container = document.querySelector("#container")
 
-//创建div-》为div添加class-》把文字内容写入div
-const content = document.createElement("div")
-content.classList.add("content")
-content.textContent = "This is the glorious text-content!"
+const redP = document.createElement("p")
+redP.classList.add("redP")
+redP.textContent = "Hey I’m red!"
+redP.style.color = "red"
+container.appendChild(redP)
 
-//在找到的元素后面增加新的内容
-container.appendChild(content)
+const blueH3 = document.createElement("h3")
+blueH3.classList.add("blueH3")
+blueH3.textContent = "I’m a blue h3!"
+blueH3.style.color = "blue"
+container.appendChild(blueH3)
+
+const blackDiv = document.createElement("div")
+blackDiv.classList.add("blackDiv")
+blackDiv.style.cssText = "border: solid black; background-color: pink;"
+container.appendChild(blackDiv)
+
+const simpleH1 = document.createElement("h1")
+simpleH1.classList.add("simpleH1")
+simpleH1.textContent = "I’m in a div"
+blackDiv.appendChild(simpleH1)
+
+const simpleP = document.createElement("p")
+simpleP.classList.add("simpleP")
+simpleP.textContent = "ME TOO!"
+blackDiv.appendChild(simpleP)
+
