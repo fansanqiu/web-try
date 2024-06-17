@@ -1,85 +1,67 @@
+const getBtn = document.querySelector('#content')
+const getHumanChoose = document.querySelector('#humanChoose')
+const getComputerChoose = document.querySelector('#computerChoose')
+const getHumanScore = document.querySelector('#humanScore')
+const getComputerScore = document.querySelector('#computerScore')
+const getResult = document.querySelector('#result')
+
 let humanScore = 0;
 let computerScore = 0;
-
-function getComputerChoice(){
-    let randomNum;
-    randomNum = Math.random();
-    
-    if (randomNum >= 0 && randomNum < 0.33){
-        return "rock";
-    }
-    else if (randomNum >= 0.33 && randomNum < 0.66){
-        return "paper";
-    }
-    else{
-        return "scissor";
-    }
-}
-
-function getHumanChoice(){
-    let humanChoice = prompt("Input","paper");
-
-    humanChoice = humanChoice.toLowerCase();
-
-    if(humanChoice == "rock"){
-        console.log("The human selects: " + humanChoice);
-        return "rock";
-    }
-    else if(humanChoice == "paper"){
-        console.log("The human selects: " + humanChoice);
-        return "paper";
-    }
-    else if(humanChoice == "scissor"){
-        console.log("The human selects: " + humanChoice);
-        return "scissor";
-    }
-    else{
-        console.log("Something error");
-    }
-}
 
 function playRound(humanSelection, computerSelection){
     switch(true){
         case humanSelection === computerSelection:
-            console.log("Nobody win.");
+            getResult.textContent = "Nobody win.";
             break;
-        case humanSelection === "rock" && computerSelection === "scissor":
-            console.log("Human win.");
+        case humanSelection === "rock" && computerSelection === "scissor" || humanSelection === "paper" && computerSelection === "rock" || humanSelection === "scissor" && computerSelection === "paper":
+            getResult.textContent = "Human win.";
             humanScore += 1;
+            getHumanScore.textContent = humanScore
             break;
-        case humanSelection === "rock" && computerSelection === "paper":
-            console.log("Computer win.");
+        case humanSelection === "rock" && computerSelection === "paper" || humanSelection === "scissor" && computerSelection === "rock" || humanSelection == "paper" && computerSelection === "scissor":
+            getResult.textContent = "Computer win.";
             computerScore += 1;
-            break;
-        case humanSelection === "paper" && computerSelection === "rock":
-            console.log("Human win.");
-            humanScore += 1;
-            break;
-        case humanSelection == "paper" && computerSelection === "scissor":
-            console.log("Computer win.")
-            computerScore += 1;
-            break;
-        case humanSelection === "scissor" && computerSelection === "paper":
-            console.log("Human win.");
-            humanScore += 1;
-            break;
-        case humanSelection === "scissor" && computerSelection === "rock":
-            console.log("Computer win.");
-            computerScore += 1;
+            getComputerScore.textContent = computerScore
             break;
         default:
-            console.log("Something error!")
+            getResult.textContent = "Something error!"
     }
 }
 
-for (let i = 0; i < 5; i++){
+getBtn.addEventListener('click', (event)=>{
+    let randomNum;
+    randomNum = Math.random();
+    let humanSelection;
+    let computerSelection;
+    let target = event.target;
     
-    const computerChoice = getComputerChoice();
-    const humanChoice = getHumanChoice();
-    console.log("The computer selects: " + computerChoice);
-    
-    playRound(humanChoice, computerChoice);
-}
+    if (randomNum >= 0 && randomNum < 0.33){
+        computerSelection = "rock";
+        getComputerChoose.textContent = "rock"
+    }
+    else if (randomNum >= 0.33 && randomNum < 0.66){
+        computerSelection = "paper";
+        getComputerChoose.textContent = "paper"
+    }
+    else{
+        computerSelection = "scissor";
+        getComputerChoose.textContent = "scissor"
+    }
 
-console.log("Human: " + humanScore)
-console.log("Computer: " + computerScore)
+    switch(target.id){
+        case 'rock':
+            humanSelection = "rock";
+            getHumanChoose.textContent = "rock"
+            break
+        case 'paper':
+            humanSelection = "paper";
+            getHumanChoose.textContent = "paper"
+            break
+        case 'scissor':
+            humanSelection = "scissor"
+            getHumanChoose.textContent = "scissor"
+            break
+    }
+
+    playRound(humanSelection, computerSelection)
+})
