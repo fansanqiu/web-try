@@ -1,6 +1,28 @@
-const btn = document.querySelector("#btn")
+const getUl = document.querySelector("ul")
+const getInput = document.querySelector("input")
+const getCreateBtn = document.querySelector("#createBtn")
 
-const addBtn = document.createElement("p")
-addBtn.textContent = "Hello World"
+getCreateBtn.addEventListener('click', () => {
+    const userInput = getInput.value;
 
-btn.onclick = () => document.body.appendChild(addBtn)
+    getInput.value = '';
+
+    if(userInput.trim() !== ''){
+        const newLi = document.createElement('li')
+        const newSpan = document.createElement("span")
+        const newBtn = document.createElement("button")
+
+        newSpan.textContent = userInput
+        newBtn.textContent = "Delete"
+        newBtn.setAttribute("id", "delBtn")
+
+        getUl.appendChild(newLi)
+        newLi.appendChild(newSpan)
+        newLi.appendChild(newBtn)
+
+        newBtn.addEventListener('click', ()=>{
+            newLi.remove()
+        })
+    }
+    getInput.focus()
+})

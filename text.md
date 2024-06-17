@@ -1,0 +1,13 @@
+1. 创建3个变量，分别用来保存ul、input、createButton
+2. 创建1个函数，createRow
+   1. 创建1个变量，保存input的内容
+   2. 获得input的输入内容
+   3. 清空input的内容
+   4. 创建3个新的元素li、span、button
+      1. 将新创建的元素存入变量中
+      2. 将span和button设置为li的子项
+      3. 将span的值设为input的内容
+      4. 将button的值设为Delete
+      5. 创建li、span、button
+3. 创建1个函数，deleteRow
+   1. 删除整行内容
